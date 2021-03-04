@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { AllCategory } from '../../_model/hotels/AllCategory';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 export class HotelCategoryService {
   baseUrl = 'https://sleepy-basin-52383.herokuapp.com/';
   categoryList: AllCategory;
+  catEvent = new EventEmitter();
+
   // categoryList: AllCategory = {
   //   _id: '2525',
   //   safety: { _id: '1', name: 'Properties taking safety measures' },

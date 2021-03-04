@@ -9,13 +9,26 @@ import { SingupComponent } from './profile/singup/singup.component';
 import { HelpCenterComponent } from './help-center/help-center.component';
 import { MediaCenterComponent } from './media-center/media-center.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './_services/home/auth.service';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeListingComponent },
-  { path: 'hotels', component: HotelsListingComponent },
-  { path: 'cruises', component: CruisesComponent },
-  { path: 'resturants', component: RestaurantListingComponent },
-  { path: 'shopping', component: ShoppingPageComponent },
+  {
+    path: 'hotels',
+    component: HotelsListingComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'cruises', component: CruisesComponent, canActivate: [AuthGuard] },
+  {
+    path: 'resturants',
+    component: RestaurantListingComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'shopping',
+    component: ShoppingPageComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'signup', component: SingupComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'mediaCenter', component: MediaCenterComponent },
@@ -27,4 +40,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
