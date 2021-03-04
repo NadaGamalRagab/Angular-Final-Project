@@ -143,4 +143,13 @@ export class HomeListingComponent implements OnInit {
     //    console.log(this.hotels);
     // });
   }
+  // linkClicked=false;
+  // addShadow(){
+  //   this.linkClicked = ! this.linkClicked;
+  // }
+  openModal = false;
+  openSearchModal(){
+    this.openModal = ! this.openModal;
+    console.log(this.openModal);
+  }
 }
