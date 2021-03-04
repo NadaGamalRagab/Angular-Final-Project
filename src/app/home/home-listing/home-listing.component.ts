@@ -27,7 +27,7 @@ import { City } from './../../_model/home/city';
 export class HomeListingComponent implements OnInit {
   cities: City[] = [];
   city: string;
-
+  auth = false;
   dataset = ['MDB', 'Angular', 'Bootstrap', 'Framework', 'SPA', 'React', 'Vue'];
 
   top: DreamTripCards[];
@@ -107,10 +107,15 @@ export class HomeListingComponent implements OnInit {
       this.search.push(value);
       for (let targetCity of this.cities) {
         console.log(targetCity.name);
-        if (value == targetCity.name) {
+        if (value.toLowerCase() == targetCity.name.toLowerCase()) {
           console.log('match', targetCity.name);
+          this.homeService.auth = true;
           this.homeService.hotelsId.emit(targetCity.hotelsId);
         }
+        else {
+          this.homeService.auth = false;
+        }
+
       }
     }
   }

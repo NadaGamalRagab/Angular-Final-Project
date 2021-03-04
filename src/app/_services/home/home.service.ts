@@ -63,6 +63,7 @@ export class HomeService {
   //   },
   // ];
   cities: City[] = [];
+  auth = false;
   baseUrl = 'https://sleepy-basin-52383.herokuapp.com/';
   hotelsId = new EventEmitter<string[]>();
   constructor(private httpClient: HttpClient) {

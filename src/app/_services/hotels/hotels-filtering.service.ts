@@ -24,17 +24,19 @@ export class HotelsFilteringService {
   }
 
   getHotels() {
-    this.HotelService.getAllHotels().subscribe(
-      (resp) => {
-        Object.values(resp).map((res) => {
-          console.log(res);
-          this.hotels.push(res);
-        });
-        console.log(this.hotels);
-      },
-      (error) => {},
-      () => {}
-    );
+    this.hotels = this.HotelService.getAllHotels();
+
+    // this.HotelService.getAllHotels().subscribe(
+    //   (resp) => {
+    //     Object.values(resp).map((res) => {
+    //       console.log(res);
+    //       this.hotels.push(res);
+    //     });
+    //     console.log(this.hotels);
+    //   },
+    //   (error) => {},
+    //   () => {}
+    // );
   }
 
   Filter(event) {

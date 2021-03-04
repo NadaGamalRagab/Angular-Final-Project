@@ -3,6 +3,8 @@ import { Hotel } from 'src/app/_model/hotels/hotel';
 import { HotelService } from 'src/app/_services/hotels/hotel.service';
 import { resolveTypeReferenceDirective } from 'typescript';
 import { HotelsFilteringService } from './../../_services/hotels/hotels-filtering.service';
+import { CommonModule } from '@angular/common';
+import { HotelCategoryService } from './../../_services/hotels/hotel-category.service';
 
 @Component({
   selector: 'app-hotels-listing',
@@ -14,11 +16,20 @@ export class HotelsListingComponent implements OnInit, OnChanges {
   pageNumbers: number[] = [];
   pageSize: number = 2;
   currentPage: number = 0;
-
+  spinner = true;
   constructor(
     private hotelService: HotelService,
-    private HotelsFilteringService: HotelsFilteringService
+    private HotelsFilteringService: HotelsFilteringService,
+    private HotelCategoryService: HotelCategoryService
   ) {
+    this.HotelCategoryService.catEvent.subscribe((resp) => {
+      this.hotels = this.hotelService.getAllHotels();
+      if ((this.hotels.length = 2)) {
+        console.log('data arrived');
+        this.spinner = false;
+      }
+    });
+
     // this.homeService.hotelsId.subscribe(
     //   (resp) => {
     //     this.hotelsId = resp;
@@ -32,22 +43,21 @@ export class HotelsListingComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    //this.hotels = this.hotelService.getAllHotels();
-    this.hotelService.getAllHotels().subscribe(
-      (resp) => {
-        //console.log(resp);
-        //this.hotels = resp;
-        //console.log(this.hotels);
-        Object.values(resp).map((res) => {
-          //console.log(res);
-          this.hotels.push(res);
-        });
-        //console.log(this.hotels);
-        this.calculateNumberOfPages(this.hotels.length);
-      },
-      (error) => { },
-      () => { }
-    );
+    // this.hotelService.getAllHotels().subscribe(
+    //   (resp) => {
+    //     //console.log(resp);
+    //     //this.hotels = resp;
+    //     //console.log(this.hotels);
+    //     Object.values(resp).map((res) => {
+    //       //console.log(res);
+    //       this.hotels.push(res);
+    //     });
+    //     //console.log(this.hotels);
+    //     this.calculateNumberOfPages(this.hotels.length);
+    //   },
+    //   (error) => { },
+    //   () => { }
+    // );
 
     this.HotelsFilteringService.Filtering.subscribe(
       (event) => {
@@ -57,15 +67,14 @@ export class HotelsListingComponent implements OnInit, OnChanges {
         } else {
           this.hotels = this.HotelsFilteringService.Filter(event);
         }
-
       },
       (error) => {
         console.log(error);
       },
-      (copmleted) => { }
+      (copmleted) => {}
     );
   }
-  ngOnChanges(): void { }
+  ngOnChanges(): void {}
 
   calculateNumberOfPages(length) {
     this.pageNumbers = [];
