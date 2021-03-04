@@ -150,6 +150,6 @@ export class HomeListingComponent implements OnInit {
   openModal = false;
   openSearchModal(){
     this.openModal = ! this.openModal;
-    console.log(this.openModal);
+    console.log(this.openModal)
   }
 }
