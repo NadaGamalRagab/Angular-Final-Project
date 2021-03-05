@@ -18,6 +18,8 @@ import { HotelService } from 'src/app/_services/hotels/hotel.service';
 import { Hotel } from 'src/app/_model/hotels/hotel';
 import { CommonModule } from '@angular/common';
 import { City } from './../../_model/home/city';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home-listing',
@@ -39,12 +41,15 @@ export class HomeListingComponent implements OnInit {
   slides: any = [[]];
   hotels: Hotel[] = [];
 
+  // @ViewChild('closeModal') closeModal: ElementRef
   constructor(
     private renderer: Renderer2,
     private dreamTripSerivce: DreamTripService,
     private moreExploreSerivce: MoreExploreService,
     private homeService: HomeService,
-    private hotelService: HotelService
+    private hotelService: HotelService,
+    // private activeModal: NgbActiveModal
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -111,6 +116,8 @@ export class HomeListingComponent implements OnInit {
           console.log('match', targetCity.name);
           this.homeService.auth = true;
           this.homeService.hotelsId.emit(targetCity.hotelsId);
+          this.homeService.resturantsId.emit(targetCity.resturantsId);
+          this.homeService.cruisesId.emit(targetCity.cruisesId);
         }
         else {
           this.homeService.auth = false;
@@ -136,8 +143,15 @@ export class HomeListingComponent implements OnInit {
     });
   }
 
+  getSearchResturants(resturantValue){
+    this.city = resturantValue.toLowerCase();
+    console.log(this.city);
+  }
   getSearchHotels(hotelValue) {
     this.city = hotelValue.toLowerCase();
+    // this.activeModal.dismiss();
+    // this.closeModal.nativeElement.click()
+    // this.modalService.dismissAll();
     console.log(this.city);
 
     //  this.hotelService.getAllHotels().subscribe((resp) => {
@@ -152,9 +166,12 @@ export class HomeListingComponent implements OnInit {
   // addShadow(){
   //   this.linkClicked = ! this.linkClicked;
   // }
-  openModal = false;
+  openModal = this.homeService.openModal;
   openSearchModal(){
-    this.openModal = ! this.openModal;
+    this.openModal = ! this.homeService.openModal;
     console.log(this.openModal)
+  }
+  CloseModal() {
+    // this.activeModal.dismiss();
   }
 }

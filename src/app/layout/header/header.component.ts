@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalizationService } from 'src/app/_services/general/localization.service';
+import { AuthGuard } from 'src/app/_services/home/auth.service';
+import { HomeService } from 'src/app/_services/home/home.service';
 
 @Component({
   selector: 'app-header',
@@ -11,9 +13,11 @@ export class HeaderComponent implements OnInit {
   search: string[] = [];
   constructor(private localizationService: LocalizationService,
     public translate: TranslateService,
+    private homeService:HomeService
   ) { }
 
   ngOnInit(): void {
+    
   }
   show = true;
   searchInput() {
@@ -39,7 +43,13 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  // openSearchModal(){
+  //   const enterCity = this.homeService.auth;
+  //   if(!enterCity){
 
+  //   }
+
+  // }
 
 
 }

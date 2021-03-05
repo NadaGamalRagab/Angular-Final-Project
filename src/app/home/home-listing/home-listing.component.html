@@ -152,7 +152,7 @@
                             <!-- </div> -->
                             <div class="col-8">
                               <div class="searchTxt">
-                                <div (click)="getSearchHotels(searchInput.value)" routerLink="/hotels" class="txt">
+                                <div data-dismiss="modal" (click)="getSearchHotels(searchInput.value)" routerLink="/hotels" class="txt">
                                   {{ searchInput.value}} Hotels</div>
                               </div>
                             </div>
@@ -172,7 +172,8 @@
                             <!-- </div> -->
                             <div class="col-8">
                               <div class="searchTxt">
-                                <div class="txt">{{ searchInput.value }} Restaurants</div>
+                                <div data-dismiss="modal" (click)="getSearchResturants(searchInput.value)" routerLink="/resturants"  class="txt">
+                                  {{ searchInput.value }} Restaurants</div>
                               </div>
                             </div>
                           </a>

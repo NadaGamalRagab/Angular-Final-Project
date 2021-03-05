@@ -17,16 +17,32 @@ export class ResturantFilteringService {
     private ResturantCategoryService: ResturantCategoryService,
     private ResturantService: ResturantService
   ) {
-    this.ResturantService.getAllResturants().subscribe(
-      (resp) => {
-        Object.values(resp).map((res) => {
-          this.resturant.push(res);
-        });
-        // console.log(this.resturant);
-      },
-      (error) => {},
-      () => {}
-    );
+    this.getResturants();
+    // this.ResturantService.getAllResturants().subscribe(
+    //   (resp) => {
+    //     Object.values(resp).map((res) => {
+    //       this.resturant.push(res);
+    //     });
+    //     // console.log(this.resturant);
+    //   },
+    //   (error) => {},
+    //   () => {}
+    // );
+  }
+  getResturants() {
+    this.resturant = this.ResturantService.getAllResturants();
+
+    // this.HotelService.getAllHotels().subscribe(
+    //   (resp) => {
+    //     Object.values(resp).map((res) => {
+    //       console.log(res);
+    //       this.hotels.push(res);
+    //     });
+    //     console.log(this.hotels);
+    //   },
+    //   (error) => {},
+    //   () => {}
+    // );
   }
 
   Filter(event) {

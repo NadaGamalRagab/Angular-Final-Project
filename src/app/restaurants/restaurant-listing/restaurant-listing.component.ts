@@ -20,30 +20,23 @@ export class RestaurantListingComponent implements OnInit {
   pageNumbers: number[] = [];
   pageSize: number = 5;
   currentPage: number = 0;
-
+  spinner = true;
   constructor(
     private ResturantCategoryService: ResturantCategoryService,
     private ResturantService: ResturantService,
     private ResturantFilteringService: ResturantFilteringService,
     private localizationService: LocalizationService, public translate: TranslateService
-  ) { }
+  ) {
+    this.ResturantCategoryService.catEvent.subscribe((resp) => {
+      this.resturant = this.ResturantService.getAllResturants();
+      if ((this.resturant.length = 2)) {
+        console.log('data arrived');
+        this.spinner = false;
+      }
+    });
+   }
 
   ngOnInit(): void {
-    //this.hotels = this.hotelService.getAllHotels();
-    this.ResturantService.getAllResturants().subscribe(
-      (resp) => {
-        // console.log(resp);
-        Object.values(resp).map((res) => {
-          // console.log(res);
-          this.resturant.push(res);
-        });
-        console.log(this.resturant);
-        this.calculateNumberOfPages(this.resturant.length);
-      },
-      (error) => { },
-      () => { }
-    );
-
     this.ResturantFilteringService.Filtering.subscribe(
       (resp) => {
         this.resturant = this.ResturantFilteringService.Filter(resp);
@@ -52,6 +45,22 @@ export class RestaurantListingComponent implements OnInit {
       (error) => { },
       (completed) => { }
     );
+    
+    // this.ResturantService.getAllResturants().subscribe(
+    //   (resp) => {
+    //     // console.log(resp);
+    //     Object.values(resp).map((res) => {
+    //       // console.log(res);
+    //       this.resturant.push(res);
+    //     });
+    //     console.log(this.resturant);
+    //     this.calculateNumberOfPages(this.resturant.length);
+    //   },
+    //   (error) => { },
+    //   () => { }
+    // );
+
+    
   }
 
   calculateNumberOfPages(length) {
