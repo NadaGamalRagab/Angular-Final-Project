@@ -93,7 +93,7 @@
 
         <div class="cont6"> 
           <form class="form1" name="myForm">
-            <input data-toggle="modal" data-target="#exampleModal" (focus)="openSearchModal()" (input)="openSearchModal()" ng-model="q" class="input1" type="text" autocomplete="off"
+            <input #myinput data-toggle="modal" data-target="#exampleModal"  (focus)="openSearchModal()" (input)="openSearchModal()" ng-model="q" class="input1" type="text" autocomplete="off"
               autocorrect="off" autocapitalize="off" spellcheck="false" required="" name="q" placeholder="Where to?"
               title="Search" aria-label="Search" value="" aria-label="Search" />
             <button   type="submit" formaction="/Search" class="search1" title="Search" aria-label="Search" tabindex="-1">

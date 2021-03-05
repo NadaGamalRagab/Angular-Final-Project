@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalizationService } from 'src/app/_services/general/localization.service';
 import { AuthGuard } from 'src/app/_services/home/auth.service';
@@ -11,6 +11,7 @@ import { HomeService } from 'src/app/_services/home/home.service';
 })
 export class HeaderComponent implements OnInit {
   search: string[] = [];
+  
   constructor(private localizationService: LocalizationService,
     public translate: TranslateService,
     private homeService:HomeService
@@ -50,6 +51,11 @@ export class HeaderComponent implements OnInit {
   //   }
 
   // }
-
+  clicked = false;
+  openModal() {
+    // this.HotelClick.emit(!this.clicked);
+    // this.homeService.openModalFromHeader();
+    
+    }
 
 }
