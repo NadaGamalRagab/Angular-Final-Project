@@ -18,6 +18,7 @@ import { HotelService } from 'src/app/_services/hotels/hotel.service';
 import { Hotel } from 'src/app/_model/hotels/hotel';
 import { CommonModule } from '@angular/common';
 import { City } from './../../_model/home/city';
+import { AuthGuard } from 'src/app/_services/home/auth.service';
 
 @Component({
   selector: 'app-home-listing',
@@ -27,7 +28,7 @@ import { City } from './../../_model/home/city';
 export class HomeListingComponent implements OnInit {
   cities: City[] = [];
   city: string;
-  auth = false;
+  openModal = false;
   dataset = ['MDB', 'Angular', 'Bootstrap', 'Framework', 'SPA', 'React', 'Vue'];
 
   top: DreamTripCards[];
@@ -38,14 +39,18 @@ export class HomeListingComponent implements OnInit {
   size: 2;
   slides: any = [[]];
   hotels: Hotel[] = [];
+  //$: any;
 
   constructor(
     private renderer: Renderer2,
     private dreamTripSerivce: DreamTripService,
     private moreExploreSerivce: MoreExploreService,
     private homeService: HomeService,
-    private hotelService: HotelService
-  ) {}
+    private hotelService: HotelService,
+    private authService: AuthGuard
+  ) {
+    // $('#exampleModal').modal('show');
+  }
 
   ngOnInit() {
     this.top = this.dreamTripSerivce.getTop();
@@ -57,6 +62,7 @@ export class HomeListingComponent implements OnInit {
       });
       console.log(this.cities);
     });
+
     // this.cards = this.homeService.getCard();
   }
 
@@ -66,6 +72,7 @@ export class HomeListingComponent implements OnInit {
     return this.isToggel;
   }
 
+  
   /*  getSlicedProducts():Home[]{
   const start= this.current* this.size;
   
@@ -111,11 +118,9 @@ export class HomeListingComponent implements OnInit {
           console.log('match', targetCity.name);
           this.homeService.auth = true;
           this.homeService.hotelsId.emit(targetCity.hotelsId);
-        }
-        else {
+        } else {
           this.homeService.auth = false;
         }
-
       }
     }
   }
@@ -136,25 +141,9 @@ export class HomeListingComponent implements OnInit {
     });
   }
 
-  getSearchHotels(hotelValue) {
-    this.city = hotelValue.toLowerCase();
-    console.log(this.city);
-
-    //  this.hotelService.getAllHotels().subscribe((resp) => {
-    //   Object.values(resp).map((res) => {
-    //     console.log(res);
-    //     this.hotels.push(res);
-    //   });
-    //    console.log(this.hotels);
-    // });
-  }
   // linkClicked=false;
   // addShadow(){
   //   this.linkClicked = ! this.linkClicked;
   // }
-  openModal = false;
-  openSearchModal(){
-    this.openModal = ! this.openModal;
-    console.log(this.openModal)
-  }
+
 }

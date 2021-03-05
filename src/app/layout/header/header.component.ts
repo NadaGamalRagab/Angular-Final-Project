@@ -5,20 +5,20 @@ import { LocalizationService } from 'src/app/_services/general/localization.serv
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   search: string[] = [];
-  constructor(private localizationService: LocalizationService,
-    public translate: TranslateService,
-  ) { }
+  constructor(
+    private localizationService: LocalizationService,
+    public translate: TranslateService
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   show = true;
   searchInput() {
     this.show = false;
-    console.log(this.show)
+    console.log(this.show);
   }
   timeout: any = null;
   onKeySearch(event: any) {
@@ -33,13 +33,13 @@ export class HeaderComponent implements OnInit {
 
   executeListing(value: string) {
     // alert(value);
-    console.log(value)
+    console.log(value);
     if (value !== '') {
       this.search.push(value);
     }
   }
 
-
-
-
+  // emitEvent() {
+    
+  // };
 }
