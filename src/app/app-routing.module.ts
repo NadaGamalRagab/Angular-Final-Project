@@ -8,16 +8,21 @@ import { ShoppingPageComponent } from './shopping/shopping-page/shopping-page.co
 import { SingupComponent } from './profile/singup/singup.component';
 import { HelpCenterComponent } from './help-center/help-center.component';
 import { MediaCenterComponent } from './media-center/media-center.component';
+import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthTokenGuard } from './auth/auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'home', component: HomeListingComponent },
   { path: 'hotels', component: HotelsListingComponent },
   { path: 'cruises', component: CruisesComponent },
   { path: 'resturants', component: RestaurantListingComponent },
   { path: 'shopping', component: ShoppingPageComponent },
-  { path: 'signup', component: SingupComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'updateInfo', component: SingupComponent},
+  { path: 'profile', component: ProfileComponent, canActivate:[AuthTokenGuard]},
   { path: 'mediaCenter', component: MediaCenterComponent },
   { path: 'helpCenter', component: HelpCenterComponent },
   //  {path:'**', component :PageNotFoundComponent }
@@ -26,5 +31,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers:[AuthTokenGuard]
 })
 export class AppRoutingModule { }

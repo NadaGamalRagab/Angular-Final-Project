@@ -12,7 +12,7 @@ import { DateSectionComponent } from './hotels/date-section/date-section.compone
 import { CategoryComponent } from './shared/category/category.component';
 import { HotelComponent } from './hotels/hotel/hotel.component';
 import { DetailsComponent } from './hotels/details/details.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -30,7 +30,7 @@ import { BoxModelComponent } from './shared/box-model/box-model.component';
 import { AgmCoreModule } from '@agm/core';
 import { BookingComponent } from './shared/booking/booking.component';
 import { PaymentComponent } from './payment/payment.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ShoppingComponent } from './shopping/shopping/shopping.component';
 import { ShoppingItemComponent } from './shopping/shopping-item/shopping-item.component';
 import { ShoppingTicketComponent } from './shopping/shopping-ticket/shopping-ticket.component';
@@ -50,6 +50,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SingupComponent } from './profile/singup/singup.component';
 import { MediaCenterComponent } from './media-center/media-center.component';
 import { HelpCenterComponent } from './help-center/help-center.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthInterceptor } from './auth/auth-interceptor';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -88,6 +91,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SingupComponent,
     MediaCenterComponent,
     HelpCenterComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,6 +100,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     FormsModule,
     NgbModule,
+    FormsModule, 
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatInputModule,
@@ -113,7 +120,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),],
-  providers: [
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true},
     HotelsFilteringService,
     HotelsListingComponent,
     HotelCategoryService,

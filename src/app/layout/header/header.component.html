@@ -109,9 +109,18 @@
                 </a>
             </li>
             <li class="nav-item ml-4 mr-4">
-                <a class="nav-link" routerLink="profile">
-                    <img class="rounded-circle" width="35px" src="../../../assets/img/gondol.jpg">
-                </a>
+                <button *ngIf="!userIsAutenticated" type="button" routerLink="/signup" class="btn btn-outline-dark">Sign Up</button>
+                <div *ngIf="userIsAutenticated" class="dropdown">
+                    
+                        <a class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-circle" width="35px" src="../../../assets/img/gondol.jpg">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" routerLink="profile">Profile</a>
+                            <a class="dropdown-item" (click)="onLogout()">Logout</a>
+                          </div>
+                  </div>
+                
                 <!-- <a style="margin-left: 10px;" class="nav-link btn" href="../../Restaurant&Account/account.html">
                     Sign Up
                 </a> -->
