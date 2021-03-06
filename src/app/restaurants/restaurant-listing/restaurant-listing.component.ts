@@ -22,12 +22,15 @@ export class RestaurantListingComponent implements OnInit {
   pageSize: number = 5;
   currentPage: number = 0;
   spinner = true;
+
   resturantsId = [];
   cityName;
+
   constructor(
     private ResturantCategoryService: ResturantCategoryService,
     private ResturantService: ResturantService,
     private ResturantFilteringService: ResturantFilteringService,
+
     private localizationService: LocalizationService,
     public translate: TranslateService,
     public homeService: HomeService
@@ -69,6 +72,7 @@ export class RestaurantListingComponent implements OnInit {
     //   (error) => { },
     //   () => { }
     // );
+
   }
 
   calculateNumberOfPages(length) {

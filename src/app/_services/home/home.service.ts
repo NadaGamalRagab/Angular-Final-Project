@@ -1,6 +1,7 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { ElementRef, EventEmitter, Injectable, ViewChild } from '@angular/core';
 import { City } from './../../_model/home/city';
 import { HttpClient } from '@angular/common/http';
+import { ModalDirective } from 'angular-bootstrap-md';
 
 @Injectable({
   providedIn: 'root',
@@ -66,9 +67,11 @@ export class HomeService {
   auth = false;
   openModal = false;
   baseUrl = 'https://sleepy-basin-52383.herokuapp.com/';
+
   cityName;
   cityMap;
   constructor(private httpClient: HttpClient) {
+   
     // this.getAllCities().subscribe((resp) => {
     //   Object.values(resp).map((res) => {
     //     this.cities.push(res);
@@ -76,6 +79,21 @@ export class HomeService {
     //   console.log(this.cities);
     // });
   }
+  // @ViewChild('search') searchElement: ElementRef;
+  // @ViewChild("myinput") myInputField: ElementRef;
+  // showModalBox: boolean = false;
+  // @ViewChild("myinput") myInputField: ElementRef;
+ isClicked = false;
+  openModalFromHeader(){
+    // this.myInputField.nativeElement.click();
+   this.isClicked = !this.isClicked;
+   console.log(this.isClicked);
+   return this.isClicked;
+  //  this.showModalBox = !this.showModalBox;
+  //  return this.showModalBox;
+  }
+  
+
   getAllCities() {
     return this.httpClient.get(`${this.baseUrl}cities`);
   }
