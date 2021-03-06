@@ -7,23 +7,25 @@ import { HomeService } from 'src/app/_services/home/home.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   search: string[] = [];
-  
-  constructor(private localizationService: LocalizationService,
+
+  cityName;
+  constructor(
+    private localizationService: LocalizationService,
     public translate: TranslateService,
-    private homeService:HomeService
-  ) { }
+    private homeService: HomeService
+  ) {}
 
   ngOnInit(): void {
-    
+    this.cityName = this.homeService.cityName;
   }
   show = true;
   searchInput() {
     this.show = false;
-    console.log(this.show)
+    console.log(this.show);
   }
   timeout: any = null;
   onKeySearch(event: any) {
@@ -38,7 +40,7 @@ export class HeaderComponent implements OnInit {
 
   executeListing(value: string) {
     // alert(value);
-    console.log(value)
+    console.log(value);
     if (value !== '') {
       this.search.push(value);
     }
@@ -51,11 +53,5 @@ export class HeaderComponent implements OnInit {
   //   }
 
   // }
-  clicked = false;
-  openModal() {
-    // this.HotelClick.emit(!this.clicked);
-    // this.homeService.openModalFromHeader();
-    
-    }
 
 }

@@ -106,7 +106,7 @@ export class ResturantCategoryService {
         Object.values(resp).map((res) => {
           //console.log(res);
           this.categoryList = res;
-          //console.log(this.categoryList);
+          console.log(this.categoryList);
         });
       },
       (error) => {

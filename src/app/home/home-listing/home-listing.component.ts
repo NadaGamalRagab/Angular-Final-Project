@@ -29,7 +29,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class HomeListingComponent implements OnInit {
   cities: City[] = [];
   city: string;
-  auth = false;
+  openModal = false;
   dataset = ['MDB', 'Angular', 'Bootstrap', 'Framework', 'SPA', 'React', 'Vue'];
 
   top: DreamTripCards[];
@@ -70,6 +70,7 @@ export class HomeListingComponent implements OnInit {
       });
       console.log(this.cities);
     });
+
     // this.cards = this.homeService.getCard();
   }
 
@@ -144,14 +145,21 @@ export class HomeListingComponent implements OnInit {
         if (value.toLowerCase() == targetCity.name.toLowerCase()) {
           console.log('match', targetCity.name);
           this.homeService.auth = true;
-          this.homeService.hotelsId.emit(targetCity.hotelsId);
-          this.homeService.resturantsId.emit(targetCity.resturantsId);
-          this.homeService.cruisesId.emit(targetCity.cruisesId);
-        }
-        else {
+          this.homeService.cityName = targetCity.name;
+          this.homeService.cityMap = targetCity.mapUrl;
+          localStorage.setItem('hotelsId', JSON.stringify(targetCity.hotelsId));
+          localStorage.setItem(
+            'resturantsId',
+            JSON.stringify(targetCity.resturantsId)
+          );
+          localStorage.setItem(
+            'cruisesId',
+            JSON.stringify(targetCity.cruisesId)
+          );
+    
+        } else {
           this.homeService.auth = false;
         }
-
       }
     }
   }
@@ -184,11 +192,8 @@ export class HomeListingComponent implements OnInit {
     });
   }
 
-  // open(){
-  //   this.el.nativeElement.classList.remove('hidden')
-  //       this.el.nativeElement.classList.add('show ')
-  // }
-  getSearchResturants(resturantValue){
+
+  getSearchResturants(resturantValue) {
     this.city = resturantValue.toLowerCase();
     console.log(this.city);
   }
@@ -207,16 +212,5 @@ export class HomeListingComponent implements OnInit {
     //    console.log(this.hotels);
     // });
   }
-  // linkClicked=false;
-  // addShadow(){
-  //   this.linkClicked = ! this.linkClicked;
-  // }
-  openModal = this.homeService.openModal;
-  openSearchModal(){
-    // this.openModal = ! this.homeService.openModal;
-    // console.log(this.openModal)
-  }
-  CloseModal() {
-    // this.activeModal.dismiss();
-  }
+
 }

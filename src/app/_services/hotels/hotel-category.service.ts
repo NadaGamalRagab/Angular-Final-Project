@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { AllCategory } from '../../_model/hotels/AllCategory';
 import { HttpClient } from '@angular/common/http';
+import { HomeService } from 'src/app/_services/home/home.service';
 
 @Injectable({
   providedIn: 'root',
@@ -57,7 +58,10 @@ export class HotelCategoryService {
     return this.httpClient.get(`${this.baseUrl}hotelsCategory`);
     //return this.categoryList;
   }
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+    private HomeService: HomeService
+  ) {
     this.getAllCategories().subscribe(
       (resp) => {
         Object.values(resp).map((res) => {
