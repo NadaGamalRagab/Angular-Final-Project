@@ -16,8 +16,10 @@ export class TopRestaurantComponent implements OnInit {
   able = false;
   constructor(
     private resturantCategoryService: ResturantCategoryService,
-    private resturantService: ResturantService, private localizationService: LocalizationService, public translate: TranslateService
-  ) { }
+    private resturantService: ResturantService,
+    private localizationService: LocalizationService,
+    public translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.calcAvg();

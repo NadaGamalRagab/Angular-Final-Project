@@ -30,7 +30,11 @@ import { BoxModelComponent } from './shared/box-model/box-model.component';
 import { AgmCoreModule } from '@agm/core';
 import { BookingComponent } from './shared/booking/booking.component';
 import { PaymentComponent } from './payment/payment.component';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { ShoppingComponent } from './shopping/shopping/shopping.component';
 import { ShoppingItemComponent } from './shopping/shopping-item/shopping-item.component';
 import { ShoppingTicketComponent } from './shopping/shopping-ticket/shopping-ticket.component';
@@ -106,7 +110,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
@@ -124,16 +128,14 @@ export function HttpLoaderFactory(http: HttpClient) {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
 
-        deps: [HttpClient]
-      }
-    }),],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true},
-
         deps: [HttpClient],
       },
     }),
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+
+    // deps: [HttpClient],
 
     HotelsFilteringService,
     HotelsListingComponent,
