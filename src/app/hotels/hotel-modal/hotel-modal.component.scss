@@ -1,7 +1,3 @@
-::ng-deep .cdk-overlay-container {
-  position: fixed;
-  z-index: 1050;
-}
 
 .star {
   font-size: 1.5rem;
@@ -9,15 +5,15 @@
 }
 
 .filled {
-  color: #1e90ff;
+  color: #037249;
 }
 
-.bad {
-  color: #deb0b0;
-}
+// .bad {
+//   color: #deb0b0;
+// }
 
 .filled.bad {
-  color: #ff1e1e;
+  color: #05ac6f;
 }
 
 .textArea {

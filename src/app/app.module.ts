@@ -62,6 +62,7 @@ import { HotelModalComponent } from './hotels/hotel-modal/hotel-modal.component'
 // MDB Angular Free
 import { InputsModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ResturantsModalComponent } from './restaurants/resturants-modal/resturants-modal.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -104,6 +105,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     SignupComponent,
     HotelModalComponent,
+    ResturantsModalComponent,
   ],
   imports: [
     BrowserModule,

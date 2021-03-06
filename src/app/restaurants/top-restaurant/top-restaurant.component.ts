@@ -47,4 +47,13 @@ export class TopRestaurantComponent implements OnInit {
   showState() {
     return this.able;
   }
+  openModal= false;
+  ResturantModal(){
+    console.log('work1')
+    this.openModal=true;
+  }
+  showModal(){
+    console.log('work')
+    return this.openModal;
+  }
 }

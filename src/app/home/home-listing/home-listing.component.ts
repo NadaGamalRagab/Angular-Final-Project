@@ -159,8 +159,6 @@ export class HomeListingComponent implements OnInit {
     
         } else {
           this.homeService.auth = false;
-          alert('City Not Found')
-         
         }
       }
     }
