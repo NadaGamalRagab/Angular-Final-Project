@@ -90,8 +90,9 @@
             <div class="col-5 h-100 border-left ">
                 <div class="ml-3 mb-2">
                     <span class="dot" *ngFor='let dot of Counter(rate)'></span>
-                    <a href="#" class="text-dark pl-2">{{hotel.reviews.length}} {{'Hotel.hotel.reviews'|translate}} </a><br>
+                    <a data-toggle="modal" data-target="#exampleModal" (click)='HotelModal()' class="text-dark pl-2 review">{{hotel.reviews.length}} {{'Hotel.hotel.reviews'|translate}} </a><br>
                 </div>
+                <app-hotel-modal *ngIf="showModal"></app-hotel-modal>
 
                 <!-- If condition filter == amenites -->
                 <div class="ml-3 mr-3">

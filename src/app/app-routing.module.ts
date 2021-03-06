@@ -23,13 +23,15 @@ const routes: Routes = [
   {
     path: 'hotels',
     component: HotelsListingComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
-  { path: 'cruises', component: CruisesComponent, canActivate: [AuthGuard] },
+  { path: 'cruises', component: CruisesComponent,
+  //  canActivate: [AuthGuard] 
+  },
   {
     path: 'resturants',
     component: RestaurantListingComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'shopping',

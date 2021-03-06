@@ -22,6 +22,7 @@ export class HotelComponent implements OnInit {
   theBestDeal = { obj: {}, img: '' };
   rate: number = 0;
   able = false;
+  openModal=false;
 
   constructor(
     private hotelService: HotelService,
@@ -125,5 +126,11 @@ export class HotelComponent implements OnInit {
   }
   showState() {
     return this.able;
+  }
+  HotelModal(){
+    this.openModal=true;
+  }
+  showModal(){
+    return this.openModal;
   }
 }

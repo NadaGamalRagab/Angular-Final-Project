@@ -58,6 +58,10 @@ import { HelpCenterComponent } from './help-center/help-center.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { HotelModalComponent } from './hotels/hotel-modal/hotel-modal.component';
+// MDB Angular Free
+import { InputsModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -99,6 +103,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HelpCenterComponent,
     LoginComponent,
     SignupComponent,
+    HotelModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,6 +120,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSliderModule,
     HttpClientModule,
     MatSelectModule,
+    MDBBootstrapModule.forRoot(),
+    InputsModule, WavesModule, ButtonsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCUx00mtjJ5MpIINJmBoLm41CYEg4axO4I',
     }),
@@ -128,18 +135,15 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true},
-
-        deps: [HttpClient],
-      },
-    }),
-  ],
-  providers: [
-
+ // deps: [HttpClient], 
     HotelsFilteringService,
     HotelsListingComponent,
     HotelCategoryService,
-    // { provide: HTTP_INTERCEPTORS, useClass: MyInterceptorService, multi: true }
   ],
+  // providers: [
+
+  //   // { provide: HTTP_INTERCEPTORS, useClass: MyInterceptorService, multi: true }
+  // ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
