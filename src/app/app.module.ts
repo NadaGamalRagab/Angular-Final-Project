@@ -45,14 +45,20 @@ import { CruiseModalComponent } from './cruise/cruise-modal/cruise-modal.compone
 import { CruiseBookingComponent } from './cruise/cruise-booking/cruise-booking.component';
 import { CommonModule } from '@angular/common';
 import { ResturantDetailsComponent } from './restaurants/resturant-details/resturant-details.component';
-import { TranslateService, TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {
+  TranslateService,
+  TranslateModule,
+  TranslateLoader,
+} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SingupComponent } from './profile/singup/singup.component';
 import { MediaCenterComponent } from './media-center/media-center.component';
 import { HelpCenterComponent } from './help-center/help-center.component';
+
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -113,14 +119,22 @@ export function HttpLoaderFactory(http: HttpClient) {
       apiKey: 'AIzaSyCUx00mtjJ5MpIINJmBoLm41CYEg4axO4I',
     }),
     TranslateModule.forRoot({
-      defaultLanguage: "en",
+      defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
+
         deps: [HttpClient]
       }
     }),],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true},
+
+        deps: [HttpClient],
+      },
+    }),
+  ],
+  providers: [
+
     HotelsFilteringService,
     HotelsListingComponent,
     HotelCategoryService,
@@ -128,4 +142,4 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

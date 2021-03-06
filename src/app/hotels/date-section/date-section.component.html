@@ -1,5 +1,5 @@
-<div class="row pb-5 bg-white pt-4">
-    <div class="col-3">
+<div class="row pb-3 bg-white pt-4">
+    <div class="col-4">
         <div class="row">
             <div class="col-2"></div>
             <div class="col-10 ">
@@ -16,58 +16,12 @@
         </div>
     </div>
 
-    <div class="col-9 pl-4">
+    <div class="col-8 pl-4">
         <div class="row">
-            <h2>{{'Hotel.date.Makassar'|translate}}</h2>
-        </div><br>
-        <div class="row">
-            <div class="col-6">
-                <button type="button" class="btn btn-success shadow-sm w-75 pt-0 pr-0 pb-0 border-bottom-0 border-top-0 border-right-0">
-          <div class="d-flex border bg-white rounded">
-            <span class="mr-3 ml-3 align-self-center pt-1">
-              <mat-form-field>
-                <input class="text-dark " alt="checkIn" (dateInput)="inputEvent($event)" (dateChange)="changeEvent($event)" matInput
-                  [matDatepicker]="checkIn" placeholder="Check In">
-                <mat-datepicker-toggle matSuffix [for]="checkIn"></mat-datepicker-toggle>
-                <mat-datepicker #checkIn></mat-datepicker>
-              </mat-form-field>
-            </span>
-            <!-- <span>
-              <span class="text-secondary">Check In</span> <br>
-              <span class=" text-dark">— / — / —</span>
-            </span> -->
-          </div>
-        </button>
-
-            </div>
-
-            <div class="col-6 ">
-                <div class="row">
-                    <div class="col-10">
-                        <div class="w-100">
-                            <button type="button" class="checkout btn btn-danger shadow-sm pt-0 pr-0 pb-0 border-bottom-0 border-top-0 border-right-0">
-                <div class="d-flex border bg-white rounded pr-5 wrap">
-                  <span class="mr-3 ml-3 align-self-center pt-1 ">
-                    <mat-form-field>
-                      <input class="text-dark pr-3" alt="checkOut" (dateInput)="inputEvent($event)" (dateChange)="changeEvent($event)"
-                        matInput [matDatepicker]="checkOut" placeholder="Check Out">
-                      <mat-datepicker-toggle matSuffix [for]="checkOut"></mat-datepicker-toggle>
-                      <mat-datepicker #checkOut></mat-datepicker>
-                    </mat-form-field>
-                  </span>
-                  <!-- <span>
-                    <span class="text-secondary">Check Out</span><br>
-                    <span class=" text-dark">— / — / —</span>
-                  </span> -->
-                </div>
-              </button>
-                        </div>
-                    </div>
-                    <div class="col-2"></div>
-                </div>
-            </div>
-
-
-        </div>
+          <!-- <div class="col-2"></div> -->
+          <div class="col-12"><h2 class="mt-5 ml-5">{{'Hotel.date.Makassar'|translate}}</h2> </div>
+          <!-- <div class="col-3"></div> -->
+    </div>
+       
     </div>
 </div>
