@@ -72,28 +72,8 @@ export class HomeService {
   cityMap;
   constructor(private httpClient: HttpClient) {
    
-    // this.getAllCities().subscribe((resp) => {
-    //   Object.values(resp).map((res) => {
-    //     this.cities.push(res);
-    //   });
-    //   console.log(this.cities);
-    // });
   }
-  // @ViewChild('search') searchElement: ElementRef;
-  // @ViewChild("myinput") myInputField: ElementRef;
-  // showModalBox: boolean = false;
-  // @ViewChild("myinput") myInputField: ElementRef;
- isClicked = false;
-  openModalFromHeader(){
-    // this.myInputField.nativeElement.click();
-   this.isClicked = !this.isClicked;
-   console.log(this.isClicked);
-   return this.isClicked;
-  //  this.showModalBox = !this.showModalBox;
-  //  return this.showModalBox;
-  }
-  
-
+  HotelClick = new EventEmitter();
   getAllCities() {
     return this.httpClient.get(`${this.baseUrl}cities`);
   }
