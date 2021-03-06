@@ -88,6 +88,24 @@
                 <a href={{deal.link}} class="text-dark">{{deal.name}}</a><br>
                 <a href={{deal.link}} class="text-dark"><b>{{deal.pricePerNight | number: "1.0"}}</b></a><br><br>
               </div>
+
+            <div class="col-5 h-100 border-left ">
+                <div class="ml-3 mb-2">
+                    <span class="dot" *ngFor='let dot of Counter(rate)'></span>
+                    <a data-toggle="modal" data-target="#exampleModal" (click)='HotelModal()' class="text-dark pl-2 review">{{hotel.reviews.length}} {{'Hotel.hotel.reviews'|translate}} </a><br>
+                </div>
+                <app-hotel-modal [hotel]="hotel" *ngIf="showModal"></app-hotel-modal>
+
+                <!-- If condition filter == amenites -->
+                <div class="ml-3 mr-3">
+                    <span>{{'Hotel.hotel.Best'|translate}}</span>
+                </div><br>
+
+                <div class="ml-3 mr-3" *ngFor='let amt of hotel.amenities.slice(0,3)'>
+                    <span><i class="fas fa-check-circle"></i><span> {{getAmt(amt)}}</span></span><br>
+                </div>
+                <a href={{theBestDeal.obj[0].link}} class="text-dark ml-3 mr-3"><i class="fas fa-globe"></i><span>
+            {{'Hotel.hotel.Visit'|translate}}</span></a>
             </div>
           </div>
         </div>

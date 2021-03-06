@@ -25,7 +25,9 @@ const routes: Routes = [
     component: HotelsListingComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'cruises', component: CruisesComponent, canActivate: [AuthGuard] },
+  { path: 'cruises', component: CruisesComponent,
+   canActivate: [AuthGuard] 
+  },
   {
     path: 'resturants',
     component: RestaurantListingComponent,

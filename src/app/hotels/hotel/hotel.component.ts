@@ -21,8 +21,11 @@ export class HotelComponent implements OnInit {
   reserveNow: boolean = false;
   theBestDeal = { obj: {}, img: '' };
   rate: number = 0;
-  able = false;
+  able = false; 
   clicked = false;
+
+  openModal=false;
+
   constructor(
     private hotelService: HotelService,
     private HotelCategoryService: HotelCategoryService,
@@ -126,7 +129,14 @@ export class HotelComponent implements OnInit {
   showState() {
     return this.able;
   }
+
   toggle() {
     this.clicked = !this.clicked;
+
+  HotelModal(){
+    this.openModal=true;
+  }
+  showModal(){
+    return this.openModal;
   }
 }
