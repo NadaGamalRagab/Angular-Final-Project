@@ -23,6 +23,8 @@ export class AuthGuard implements CanActivate {
 
     // not logged in so redirect to login page with the return url
     this.router.navigate(['/home'], { queryParams: { returnUrl: state.url } });
+    this.HomeService.openModal= ! this.HomeService.openModal;
+    console.log(this.HomeService.openModal)
     return false;
   }
 }

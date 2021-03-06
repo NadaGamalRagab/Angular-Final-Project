@@ -5,6 +5,7 @@ import { resolveTypeReferenceDirective } from 'typescript';
 import { HotelsFilteringService } from './../../_services/hotels/hotels-filtering.service';
 import { CommonModule } from '@angular/common';
 import { HotelCategoryService } from './../../_services/hotels/hotel-category.service';
+import { HomeService } from 'src/app/_services/home/home.service';
 
 @Component({
   selector: 'app-hotels-listing',
@@ -12,34 +13,33 @@ import { HotelCategoryService } from './../../_services/hotels/hotel-category.se
   styleUrls: ['./hotels-listing.component.scss'],
 })
 export class HotelsListingComponent implements OnInit, OnChanges {
-  hotels: Hotel[] = [];
+  hotels = [];
   pageNumbers: number[] = [];
   pageSize: number = 2;
   currentPage: number = 0;
   spinner = true;
+  hotelsId: string[] = [];
+  cityName;
+  cityMap;
   constructor(
     private hotelService: HotelService,
     private HotelsFilteringService: HotelsFilteringService,
-    private HotelCategoryService: HotelCategoryService
+    private HotelCategoryService: HotelCategoryService,
+    private HomeService: HomeService
   ) {
+    this.cityName = this.HomeService.cityName;
+    this.cityMap = this.HomeService.cityMap;
+
+    this.hotelsId = JSON.parse(localStorage.getItem('hotelsId'));
+    console.log(this.hotelsId);
     this.HotelCategoryService.catEvent.subscribe((resp) => {
-      this.hotels = this.hotelService.getAllHotels();
-      if ((this.hotels.length = 2)) {
-        console.log('data arrived');
-        this.spinner = false;
+      for (let id of this.hotelsId) {
+        this.hotelService.getHotelById(id).subscribe((res) => {
+          this.hotels.push(res);
+          console.log(res);
+        });
       }
     });
-
-    // this.homeService.hotelsId.subscribe(
-    //   (resp) => {
-    //     this.hotelsId = resp;
-    //     console.log(this.hotelsId);
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   },
-    //   () => {}
-    // );
   }
 
   ngOnInit(): void {

@@ -535,16 +535,18 @@ export class HotelService {
     private httpClient: HttpClient,
     private homeService: HomeService
   ) {
-    this.homeService.hotelsId.subscribe((resp) => {
-      this.hotelsId = resp;
-      for (let id of this.hotelsId) {
-        this.getHotelById(id).subscribe((res) => {
-          this.hotels.push(res);
-          console.log(res);
-        });
-      }
-      // console.log(this.hotels);
-    });
+    this.hotelsId = JSON.parse(localStorage.getItem('hotelsId'));
+    console.log(this.hotelsId);
+    // this.homeService.hotelsId.subscribe((resp) => {
+    //   this.hotelsId = resp;
+    //   for (let id of this.hotelsId) {
+    //     this.getHotelById(id).subscribe((res) => {
+    //       this.hotels.push(res);
+    //       console.log(res);
+    //     });
+    //   }
+    //   // console.log(this.hotels);
+    // });
 
     // this.getAllHotels().subscribe((resp) => {
     //   Object.values(resp).map((res) => {

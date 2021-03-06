@@ -18,7 +18,8 @@ import { HotelService } from 'src/app/_services/hotels/hotel.service';
 import { Hotel } from 'src/app/_model/hotels/hotel';
 import { CommonModule } from '@angular/common';
 import { City } from './../../_model/home/city';
-import { AuthGuard } from 'src/app/_services/home/auth.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home-listing',
@@ -39,18 +40,17 @@ export class HomeListingComponent implements OnInit {
   size: 2;
   slides: any = [[]];
   hotels: Hotel[] = [];
-  //$: any;
 
+  // @ViewChild('closeModal') closeModal: ElementRef
   constructor(
     private renderer: Renderer2,
     private dreamTripSerivce: DreamTripService,
     private moreExploreSerivce: MoreExploreService,
     private homeService: HomeService,
     private hotelService: HotelService,
-    private authService: AuthGuard
-  ) {
-    // $('#exampleModal').modal('show');
-  }
+    // private activeModal: NgbActiveModal
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit() {
     this.top = this.dreamTripSerivce.getTop();
@@ -72,7 +72,6 @@ export class HomeListingComponent implements OnInit {
     return this.isToggel;
   }
 
-  
   /*  getSlicedProducts():Home[]{
   const start= this.current* this.size;
   
@@ -117,7 +116,23 @@ export class HomeListingComponent implements OnInit {
         if (value.toLowerCase() == targetCity.name.toLowerCase()) {
           console.log('match', targetCity.name);
           this.homeService.auth = true;
-          this.homeService.hotelsId.emit(targetCity.hotelsId);
+          this.homeService.cityName = targetCity.name;
+          this.homeService.cityMap = targetCity.mapUrl;
+          localStorage.setItem('hotelsId', JSON.stringify(targetCity.hotelsId));
+          localStorage.setItem(
+            'resturantsId',
+            JSON.stringify(targetCity.resturantsId)
+          );
+          localStorage.setItem(
+            'cruisesId',
+            JSON.stringify(targetCity.cruisesId)
+          );
+          //this.homeService.testEvent.emit('hello');
+          //console.log('after event');
+          //console.log(targetCity.resturantsId);
+          //this.homeService.hotelsId.emit(targetCity.hotelsId);
+          //this.homeService.resturantsId.emit();
+          // this.homeService.cruisesId.emit(targetCity.cruisesId);
         } else {
           this.homeService.auth = false;
         }
@@ -141,9 +156,23 @@ export class HomeListingComponent implements OnInit {
     });
   }
 
-  // linkClicked=false;
-  // addShadow(){
-  //   this.linkClicked = ! this.linkClicked;
-  // }
+  getSearchResturants(resturantValue) {
+    this.city = resturantValue.toLowerCase();
+    console.log(this.city);
+  }
+  getSearchHotels(hotelValue) {
+    this.city = hotelValue.toLowerCase();
+    // this.activeModal.dismiss();
+    // this.closeModal.nativeElement.click()
+    // this.modalService.dismissAll();
+    console.log(this.city);
 
+    //  this.hotelService.getAllHotels().subscribe((resp) => {
+    //   Object.values(resp).map((res) => {
+    //     console.log(res);
+    //     this.hotels.push(res);
+    //   });
+    //    console.log(this.hotels);
+    // });
+  }
 }

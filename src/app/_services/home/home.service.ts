@@ -64,8 +64,10 @@ export class HomeService {
   // ];
   cities: City[] = [];
   auth = false;
+  openModal = false;
   baseUrl = 'https://sleepy-basin-52383.herokuapp.com/';
-  hotelsId = new EventEmitter<string[]>();
+  cityName;
+  cityMap;
   constructor(private httpClient: HttpClient) {
     // this.getAllCities().subscribe((resp) => {
     //   Object.values(resp).map((res) => {
@@ -77,6 +79,4 @@ export class HomeService {
   getAllCities() {
     return this.httpClient.get(`${this.baseUrl}cities`);
   }
-
-
 }
