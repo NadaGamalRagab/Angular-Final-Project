@@ -3,7 +3,6 @@ import { Restaurant } from '../../_model/resturant/restaurant';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HomeService } from '../home/home.service';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -15,40 +14,42 @@ export class ResturantService {
   viewDetails = new EventEmitter<Restaurant>();
   resturantsId: string[] = [];
 
+  getResturantById(_id: String) {
+    return this.httpClient.get(`${this.baseUrl}Restaurant/${_id}`);
+    // return this.resturant.find((rest) => rest._id == _id);
+  }
   constructor(
     private httpClient: HttpClient,
     private homeService: HomeService
   ) {
     this.resturantsId = JSON.parse(localStorage.getItem('resturantsId'));
-
-
-    // this.homeService.resturantsId.subscribe((resp) => {
-    //   console.log(resp);
-    //   this.resturantId = resp;
-    //   for (let id of this.resturantId) {
-    //     this.getResturantById(id).subscribe((res) => {
-    //       this.resturant.push(res);
-    //       console.log(res);
-    //     });
-    //   }
-    //   // console.log(this.hotels);
-    // });
-    // this.getAllResturants().subscribe((resp) => {
-    //   Object.values(resp).map((res) => {
-    //     this.resturant.push(res);
-    //   });
-    // });
-
+    for (let id of this.resturantsId) {
+      this.getResturantById(id).subscribe((res) => {
+        this.resturant.push(res);
+        console.log(res);
+      });
+    }
   }
+  // this.homeService.resturantsId.subscribe((resp) => {
+  //   console.log(resp);
+  //   this.resturantId = resp;
+  //   for (let id of this.resturantId) {
+  //     this.getResturantById(id).subscribe((res) => {
+  //       this.resturant.push(res);
+  //       console.log(res);
+  //     });
+  //   }
+  //   // console.log(this.hotels);
+  // });
+  // this.getAllResturants().subscribe((resp) => {
+  //   Object.values(resp).map((res) => {
+  //     this.resturant.push(res);
+  //   });
+  // });
 
   getAllResturants() {
     return this.resturant;
     // return this.httpClient.get(`${this.baseUrl}Restaurant`);
-  }
-
-  getResturantById(_id: String) {
-    return this.httpClient.get(`${this.baseUrl}Restaurant/${_id}`);
-    // return this.resturant.find((rest) => rest._id == _id);
   }
 
   searchByName(resturantName: string) {

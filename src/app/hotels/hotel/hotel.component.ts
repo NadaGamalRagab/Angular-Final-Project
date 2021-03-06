@@ -22,14 +22,14 @@ export class HotelComponent implements OnInit {
   theBestDeal = { obj: {}, img: '' };
   rate: number = 0;
   able = false;
-
+  clicked = false;
   constructor(
     private hotelService: HotelService,
     private HotelCategoryService: HotelCategoryService,
     config: NgbModalConfig,
     private modalService: NgbModal,
     private localizationService: LocalizationService,
-    public translate: TranslateService,
+    public translate: TranslateService
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -125,5 +125,8 @@ export class HotelComponent implements OnInit {
   }
   showState() {
     return this.able;
+  }
+  toggle() {
+    this.clicked = !this.clicked;
   }
 }
