@@ -54,7 +54,8 @@ export class HomeListingComponent implements OnInit {
   ) {
     this.homeService.HotelClick.subscribe(
       (resp)=>{
-        this.myInputField.nativeElement.click();
+        this.myInputField.nativeElement.click(); 
+        // this.searchInput.nativeElement.focus();
       }
     )
   }
@@ -163,7 +164,8 @@ export class HomeListingComponent implements OnInit {
     return R;
   }
 
-  @ViewChild("myinput") myInputField: ElementRef;
+  @ViewChild("myinput") myInputField: ElementRef; 
+  // @ViewChild("searchInput") searchInput: ElementRef;
  
   
   ngAfterViewInit() {
