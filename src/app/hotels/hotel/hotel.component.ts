@@ -21,7 +21,9 @@ export class HotelComponent implements OnInit {
   reserveNow: boolean = false;
   theBestDeal = { obj: {}, img: '' };
   rate: number = 0;
-  able = false;
+  able = false; 
+  clicked = false;
+
   openModal=false;
 
   constructor(
@@ -30,7 +32,7 @@ export class HotelComponent implements OnInit {
     config: NgbModalConfig,
     private modalService: NgbModal,
     private localizationService: LocalizationService,
-    public translate: TranslateService,
+    public translate: TranslateService
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -127,6 +129,10 @@ export class HotelComponent implements OnInit {
   showState() {
     return this.able;
   }
+
+  toggle() {
+    this.clicked = !this.clicked;
+
   HotelModal(){
     this.openModal=true;
   }

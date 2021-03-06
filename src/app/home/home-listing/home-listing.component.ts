@@ -40,7 +40,8 @@ export class HomeListingComponent implements OnInit {
   size: 2;
   slides: any = [[]];
   hotels: Hotel[] = [];
-
+  authCity = false;
+  clicked = false;
   // @ViewChild('closeModal') closeModal: ElementRef
   constructor(
     private renderer: Renderer2,
@@ -52,12 +53,10 @@ export class HomeListingComponent implements OnInit {
     private modalService: NgbModal,
     private el: ElementRef
   ) {
-    this.homeService.HotelClick.subscribe(
-      (resp)=>{
-        this.myInputField.nativeElement.click(); 
-        // this.searchInput.nativeElement.focus();
-      }
-    )
+    this.homeService.HotelClick.subscribe((resp) => {
+      this.myInputField.nativeElement.click();
+      // this.searchInput.nativeElement.focus();
+    });
   }
 
   ngOnInit() {
@@ -74,24 +73,22 @@ export class HomeListingComponent implements OnInit {
     // this.cards = this.homeService.getCard();
   }
 
-  alertClick(){
+  alertClick() {
     alert('clicked');
   }
-  ModalOpen(){
+  ModalOpen() {
     // this.homeService.showModal();
   }
   // @ViewChild('exampleModal') exampleModal: any;
-  
-  
+
   // showModal:boolean;
   //  open() {
   //   this.showModal = this.homeService.openModalFromHeader();
   //   console.log(this.showModal);
   //   // if(this.showModal){
   //   //   this.exampleModal.open();
-  //   // } 
+  //   // }
   //   return this.showModal;
-   
 
   // }
 
@@ -156,11 +153,12 @@ export class HomeListingComponent implements OnInit {
             'cruisesId',
             JSON.stringify(targetCity.cruisesId)
           );
-    
         } else {
           this.homeService.auth = false;
         }
       }
+      this.authCity = this.homeService.auth;
+      this.clicked = true;
     }
   }
 
@@ -172,18 +170,13 @@ export class HomeListingComponent implements OnInit {
     return R;
   }
 
-  @ViewChild("myinput") myInputField: ElementRef; 
+  @ViewChild('myinput') myInputField: ElementRef;
   // @ViewChild("searchInput") searchInput: ElementRef;
- 
-  
+
   ngAfterViewInit() {
-   
-    
-   
-   
-  //   this.el.nativeElement.addEventListener('focus', ()=> {
-  //     this.open()
-  // })
+    //   this.el.nativeElement.addEventListener('focus', ()=> {
+    //     this.open()
+    // })
     const buttons = document.querySelectorAll('.btn-floating');
     buttons.forEach((el: any) => {
       this.renderer.removeClass(el, 'btn-floating');
@@ -191,7 +184,6 @@ export class HomeListingComponent implements OnInit {
       this.renderer.addClass(el.firstElementChild, 'fa-3x');
     });
   }
-
 
   getSearchResturants(resturantValue) {
     this.city = resturantValue.toLowerCase();
@@ -212,5 +204,4 @@ export class HomeListingComponent implements OnInit {
     //    console.log(this.hotels);
     // });
   }
-
 }

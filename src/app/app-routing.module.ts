@@ -39,8 +39,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'signup', component: SingupComponent },
-    { path: 'updateInfo', component: SingupComponent},
-  { path: 'profile', component: ProfileComponent, canActivate:[AuthTokenGuard]},
+  { path: 'updateInfo', component: SingupComponent },
+  { path: 'profile', component: ProfileComponent }, //, canActivate:[AuthTokenGuard]
 
   { path: 'mediaCenter', component: MediaCenterComponent },
   { path: 'helpCenter', component: HelpCenterComponent },
@@ -50,6 +50,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers:[AuthTokenGuard]
+  providers: [AuthTokenGuard],
 })
 export class AppRoutingModule {}
